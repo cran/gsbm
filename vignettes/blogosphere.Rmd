@@ -1,0 +1,79 @@
+---
+title: "Blogosphere"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{blogosphere}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## The political blogosphere network
+
+The network of political blogs was first analyzed in "The political blogosphere and the 2004 US Election" by Lada A. Adamic and Natalie Glance,  in Proceedings of the WWW-2005 Workshop on the Weblogging Ecosystem (2005). This data set, collected before the 2004 American presidential election, records hyperlinks connecting political blogs to one another. These blogs have been labeled manually as either "liberal" or "conservative". We conduct our analysis on the largest connected component of the graph, and we ignore the direction of the links.
+
+```{r load data}
+# Load packages
+library(Matrix)
+library(igraph)
+library(gsbm)
+
+# Load data
+data(blogosphere)
+A <- blogosphere$A
+names <- blogosphere$names
+opinion <- blogosphere$opinion
+```
+
+We run our algorithm and we use our estimator $\widehat{S}_{\epsilon}$ to detect outliers : a node is considered an outlier if the corresponding column of the matrix $\widehat{S}_{\epsilon}$ is not null.
+
+```{r run algorithm}
+degrees <- colSums(A)
+n <- nrow(A)
+sqrt_deg <-sqrt(mean(degrees))
+
+# Choice of parameters
+lambda_1<- 10*sqrt_deg
+lambda_2 <- 5*sqrt_deg
+
+print(lambda_1)
+print(lambda_2)
+
+# Run the mcgd algorithm
+res <- gsbm_mcgd(A, lambda_1,lambda_2)
+
+# Detect the outliers
+outliers_detected <- which(colSums(res$S)>0)
+s<- length(outliers_detected)
+names[outliers_detected]
+```
+
+Our algorithm detects $s = 10$ outliers.
+
+Then, we use our estimator $\widehat{L}_{\epsilon}$ to estimate the communities of the remaining nodes. More precisely, we estimate the community of a node by the sign of its coordinate along the second eigenvector of $\widehat{L}_{\epsilon}$, up to a permutation of the two communities. We compare our results with the labels obtained by manual labeling.
+
+```{r estimate communities}
+# Estimate the communities of the remaining (inlier) nodes
+I <- which(colSums(res$S)==0)
+com_est <- matrix(rep(0, (n-s)*2), nrow = 2, ncol = n-s)
+sv <- svd(res$L, nu = 2, nv = 2)
+com_est[1,] <- floor(sign(sv$u[I,2])/2 + rep(0.5,n - s))
+com_est[2,] <- rep(3,n-s) - com_est[1,] 
+
+# labels are obtained up to a permutation
+best_est <- which.max(c(sum(com_est[1,] == opinion[I]), sum(com_est[2,] == opinion[I]))) 
+
+# Missclassified nodes
+missclassified_nodes <- (com_est[best_est,] != opinion[I])
+error <- sum(missclassified_nodes)
+
+print(error)
+```
+
+Among the $n-s = 1212$ remaining nodes, which are considered as inliers, $84$ are missclassified. The number of missclassified nodes is comparable with the best-known methods that have been applied for this dataset. We note that the nodes that are missclassified by our method either have low degree, or are well connected with nodes belonging to the other community.

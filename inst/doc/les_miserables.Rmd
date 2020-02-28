@@ -1,0 +1,84 @@
+---
+title: "Les miserables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{les_miserables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(igraph)
+library(gsbm)
+library(missSBM)
+library(RColorBrewer)
+```
+
+## Les Misérables character network
+
+Les Misérables characters network, encoding interactions between characters of Victor Hugo's novel, was first created by Donald Knuth as part of the Stanford Graph Base (https://people.sc.fsu.edu/~jburkardt/datasets/sgb/sgb.html). It contains 77 nodes corresponding to characters of the novel, and 254 vertices connecting two characters whenever they appear in the same chapter. 
+
+```{r load graph}
+data(les_miserables)
+A<- les_miserables$A
+names <- les_miserables$names
+net <- graph_from_adjacency_matrix(A, mode = "undirected")
+V(net)$name <- names
+V(net)$color <- "gray80"
+deg <- degree(net, mode="all")
+V(net)$size <- deg
+plot(net, vertex.label.cex = 0.4)
+```
+
+We fit a classical SBM to the graph and represent the graph with nodes proportional to their degrees and colored by community assignment. The number of communities has been selected so as to minimize the ICL criterion.
+
+```{r classical_SBM}
+vBlocks <- 1:10
+collection_sbm <- missSBM::estimate(prepare_data(A), vBlocks = vBlocks, sampling = "node")
+L_missSBM <- collection_sbm$bestModel$fittedSBM$connectProb
+colo <- round(collection_sbm$bestModel$fittedSBM$blocks)
+colo <- sapply(1:nrow(A), function(i) which.max(colo[i,]))
+pal3 <- brewer.pal(10, "Set3")
+V(net)$color <- pal3[colo]
+V(net)$label <- NA
+V(net)$size <- deg
+plot(net)
+```
+
+We observe that the main character Jean Valjean is alone in his community, and one of the clusters groups important characters (Thénardier, Éponine, Javert).
+
+The Generalized stochastic Block Model accounts for outlier profiles (hubs, mixed memberships). In this model, nodes are divided into two sets: the inliers which follow a classical SBM, and the outliers, for which we make no assumptions on the connectivity model. These two sets are unknown a priori and are learned automatically by our procedure. Below we represent the result of the clustering, with the detected outliers indicated in red. They correspond to hubs (large center node, Jean Valjean) and nodes with mixed memberships (e.g. smaller central nodes with connections to several clusters).
+```{r robust_SBM}
+lambda1 <- 4
+lambda2 <- 5
+res <- gsbm_mcgd(A, lambda1 = lambda1, lambda2 = lambda2)
+outliers <- names[which(colSums(res$S)>0)]
+sv <- svd(res$L)
+pc <- sv$u[,1:4]
+rownames(pc) <- names
+pc <- pc[setdiff(names, outliers),]
+com <- kmeans(pc, centers=4, nstart=50)
+com$cluster
+colo2 <- 1:nrow(A)
+names(colo2) <- names
+comu <- com$cluster
+comu[which(comu==4)] <- 6
+colo2[setdiff(names, outliers)] <- pal3[comu]
+colo2[outliers] <- "red"
+labels <- names(A)
+names(labels) <- names(A)
+labels[setdiff(names, outliers)] <- NA
+V(net)$label <- NA
+V(net)$color <- colo2
+V(net)$size <- deg
+E(net)$arrow.size <- 5
+plot(net, vertex.label.dist=20)
+```
+
