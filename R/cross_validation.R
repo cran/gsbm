@@ -1,6 +1,6 @@
-#' Parameter selection by crossvalidation
+#' Parameter selection by cross validation
 #'
-#' @description Selection by cross validation of the regularization parameters (lambda1 and lambda2) for estimating the probabilties of connection in a Generalized Stochastic Block Model.
+#' @description Selection by cross validation of the regularization parameters (lambda1 and lambda2) for estimating the probabilities of connection in a Generalized Stochastic Block Model.
 #'
 #' @param A nxn adjacency matrix
 #' @param epsilon regularization parameter for the L^2-norm penalty (positive number, if NULL, default method is applied)
@@ -20,7 +20,7 @@
 #' The return value is a list of components
 #'   \itemize{
 #'   \item{\code{lambda1}}{ selected value for the parameter of the nuclear norm penalization.}
-#'   \item{\code{lambda2}}{ selected value for the parameter of the 2,1-norm penalisation.}
+#'   \item{\code{lambda2}}{ selected value for the parameter of the 2,1-norm penalization.}
 #'   \item{\code{estim.cv}}{ result of the gsbm_mcgd function for the parameters selected.}
 #'   \item{\code{error}}{ a table containing the errors for all pairs of parameters on the grid.}
 #'   \item{\code{lambda1.grid}}{ grid of value for the parameter lambda1.}

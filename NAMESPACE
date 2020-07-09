@@ -2,5 +2,6 @@
 
 export(crossval)
 export(gsbm_mcgd)
+importFrom(RSpectra,eigs_sym)
 importFrom(softImpute,softImpute)
 importFrom(stats,aggregate)

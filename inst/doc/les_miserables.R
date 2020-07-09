@@ -1,16 +1,16 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----setup---------------------------------------------------------------
+## ----setup--------------------------------------------------------------------
 library(igraph)
 library(gsbm)
 library(missSBM)
 library(RColorBrewer)
 
-## ----load graph----------------------------------------------------------
+## ----load graph---------------------------------------------------------------
 data(les_miserables)
 A<- les_miserables$A
 names <- les_miserables$names
@@ -21,7 +21,7 @@ deg <- degree(net, mode="all")
 V(net)$size <- deg
 plot(net, vertex.label.cex = 0.4)
 
-## ----classical_SBM-------------------------------------------------------
+## ----classical_SBM------------------------------------------------------------
 vBlocks <- 1:10
 collection_sbm <- missSBM::estimate(prepare_data(A), vBlocks = vBlocks, sampling = "node")
 L_missSBM <- collection_sbm$bestModel$fittedSBM$connectProb
@@ -33,7 +33,7 @@ V(net)$label <- NA
 V(net)$size <- deg
 plot(net)
 
-## ----robust_SBM----------------------------------------------------------
+## ----robust_SBM---------------------------------------------------------------
 lambda1 <- 4
 lambda2 <- 5
 res <- gsbm_mcgd(A, lambda1 = lambda1, lambda2 = lambda2)

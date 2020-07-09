@@ -1,0 +1,28 @@
+---
+title: "PrimarySchool"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PrimarySchool}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## The network of contacts in a primary school
+
+The network of contacts in a primary school was collected an first analyzed in "High-Resolution Measurements of Face-to-Face Contact Patterns in a Primary School" by J. Stehlé et al. in PLOS ONE (2011). This data set records physical interactions between $226$ children and $10$ teachers from the same primary school over the course of a day. The network data was collected using a system of sensors worn by the participants. This system records the duration of interactions between two individuals facing each other at a maximum distance of one and a half meters.
+```{r load data}
+library(Matrix)
+library(gsbm)
+library(igraph)
+library(RColorBrewer)
+
+data(PrimarySchool)
+summary(PrimarySchool)
+```

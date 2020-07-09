@@ -1,10 +1,10 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----load data-----------------------------------------------------------
+## ----load data----------------------------------------------------------------
 # Load packages
 library(Matrix)
 library(igraph)
@@ -16,7 +16,7 @@ A <- blogosphere$A
 names <- blogosphere$names
 opinion <- blogosphere$opinion
 
-## ----run algorithm-------------------------------------------------------
+## ----run algorithm------------------------------------------------------------
 degrees <- colSums(A)
 n <- nrow(A)
 sqrt_deg <-sqrt(mean(degrees))
@@ -36,7 +36,7 @@ outliers_detected <- which(colSums(res$S)>0)
 s<- length(outliers_detected)
 names[outliers_detected]
 
-## ----estimate communities------------------------------------------------
+## ----estimate communities-----------------------------------------------------
 # Estimate the communities of the remaining (inlier) nodes
 I <- which(colSums(res$S)==0)
 com_est <- matrix(rep(0, (n-s)*2), nrow = 2, ncol = n-s)

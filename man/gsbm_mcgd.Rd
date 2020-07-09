@@ -50,7 +50,7 @@ nodes and the rest of the network. The matrices L and S are such that
 E(A) = L - diag(L) + S + S'
 
 where E(A) is the expectation of the adjacency matrix, diag(L) is a nxn diagonal
-matrix with diagonnal entries equal to those of L, and S' means S transposed.
+matrix with diagonal entries equal to those of L, and S' means S transposed.
 
 The return value is a list of components
   \itemize{

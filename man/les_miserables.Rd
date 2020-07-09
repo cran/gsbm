@@ -4,13 +4,15 @@
 \name{les_miserables}
 \alias{les_miserables}
 \title{Character network from "Les miserables" novel}
-\format{A list with 2 attributes:
+\format{
+A list with 2 attributes:
 \describe{
   \item{A}{ adjacency matrix of the graph. A binary matrix encoding
   254 connections between 77 nodes}
   \item{names}{ a vector giving the names of the characters corresponding to the
   rows and columns of the adjacency matrix}
-}}
+}
+}
 \source{
 \url{https://people.sc.fsu.edu/~jburkardt/datasets/sgb/sgb.html}
 }

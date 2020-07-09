@@ -2,7 +2,7 @@
 % Please edit documentation in R/cross_validation.R
 \name{crossval}
 \alias{crossval}
-\title{Parameter selection by crossvalidation}
+\title{Parameter selection by cross validation}
 \usage{
 crossval(
   A,
@@ -52,7 +52,7 @@ The values selected by cross-validation for the regularization parameters lambda
 The return value is a list of components
   \itemize{
   \item{\code{lambda1}}{ selected value for the parameter of the nuclear norm penalization.}
-  \item{\code{lambda2}}{ selected value for the parameter of the 2,1-norm penalisation.}
+  \item{\code{lambda2}}{ selected value for the parameter of the 2,1-norm penalization.}
   \item{\code{estim.cv}}{ result of the gsbm_mcgd function for the parameters selected.}
   \item{\code{error}}{ a table containing the errors for all pairs of parameters on the grid.}
   \item{\code{lambda1.grid}}{ grid of value for the parameter lambda1.}
@@ -60,7 +60,7 @@ The return value is a list of components
  }
 }
 \description{
-Selection by cross validation of the regularization parameters (lambda1 and lambda2) for estimating the probabilties of connection in a Generalized Stochastic Block Model.
+Selection by cross validation of the regularization parameters (lambda1 and lambda2) for estimating the probabilities of connection in a Generalized Stochastic Block Model.
 }
 \examples{
 # Draw a 50x50 adjacency matrix

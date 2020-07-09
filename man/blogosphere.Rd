@@ -4,7 +4,8 @@
 \name{blogosphere}
 \alias{blogosphere}
 \title{Political blogs network}
-\format{A list with 3 attributes:
+\format{
+A list with 3 attributes:
 \describe{
   \item{A}{ adjacency matrix of the graph. A binary matrix encoding
   16714 connections between 1222 nodes}
@@ -12,7 +13,8 @@
   rows and columns of the adjacency matrix}
   \item{opinion}{ vector of the political orientation of the blogs
   (0 for liberal, 1 for conservative).}
-}}
+}
+}
 \source{
 \url{http://www-personal.umich.edu/~mejn/netdata/}
 }
@@ -20,11 +22,11 @@
 data(blogosphere)
 }
 \description{
-Network of political blogs, first analysed in "The
+Network of political blogs, first analyzed in "The
 political blogosphere and the 2004 US Election" by Lada A. Adamic and Natalie Glance,  in Proceedings of the
 WWW-2005 Workshop on the Weblogging Ecosystem (2005).
 This data set, collected before the 2004 American presidential election,
 records hyperlinks connecting political blogs to one another. These blogs
-have been labelled manually as either "liberal" or "conservative".
+have been labeled manually as either "liberal" or "conservative".
 }
 \keyword{datasets}

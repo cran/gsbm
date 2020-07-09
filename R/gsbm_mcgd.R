@@ -23,7 +23,7 @@
 #' E(A) = L - diag(L) + S + S'
 #'
 #' where E(A) is the expectation of the adjacency matrix, diag(L) is a nxn diagonal
-#' matrix with diagonnal entries equal to those of L, and S' means S transposed.
+#' matrix with diagonal entries equal to those of L, and S' means S transposed.
 #'
 #' The return value is a list of components
 #'   \itemize{
@@ -36,6 +36,7 @@
 #'  }
 #'
 #' @importFrom stats aggregate
+#' @importFrom RSpectra eigs_sym
 #' @export
 #'
 #' @examples
@@ -71,14 +72,14 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
     S0 <- matrix(0,n,n)
   }
   if(is.null(L0)) L0 <- matrix(0,n,n)
-  if(is.null(R0)) R0 <- svd(L0, nu = 1, nv = 1)$d[1]
+  if(is.null(R0)) R0 <- sqrt((eigs_sym(L0, 1)$values)^2)
   if(is.null(U)) {
-    U <- (1/2)*sum((A - S0)^2, na.rm = TRUE)/lambda1
+    U <- (1/2)*sum((A - S0)^2, na.rm = T)/lambda1
   }
   S <- S0
   L <- L0
   R <- R0
-  objective <- 1/2*sum(A^2, na.rm=TRUE)
+  objective <- 1/2*sum(A^2, na.rm=T)
   error <- 1
   iter <- 0
   A0 <- A
@@ -89,25 +90,25 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
     L.tmp <- L
     R.tmp <- R
     G_S <- -2*Omega*(A-L-S-t(S))+epsilon*S # gradient wrt S
-    obj0 <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = TRUE)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
+    obj0 <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
     step <- 1
     flag <- TRUE
     while(flag){
       step <- 0.5*step
       mat <- sapply(1:n, function(j){
-        max(1-step*lambda2/sqrt(sum((S[,j]-step*G_S[,j])^2, na.rm=TRUE)),0)*(S[,j]-step*G_S[,j])
+        max(1-step*lambda2/sqrt(sum((S[,j]-step*G_S[,j])^2, na.rm=T)),0)*(S[,j]-step*G_S[,j])
       })
       mat <- pmax(mat,0)
-      obj <- (1/2)*sum((A0-mat-t(mat)-L)^2, na.rm = TRUE)+lambda1*R+lambda2*sum(sqrt(colSums(mat^2)))+epsilon*(norm(L, type="F")^2+norm(mat, type="F")^2)
+      obj <- (1/2)*sum((A0-mat-t(mat)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(mat^2)))+epsilon*(norm(L, type="F")^2+norm(mat, type="F")^2)
       flag <- obj > obj0
     }
     S <- mat
     G_L <- -Omega*(A - S - t(S) - L) + epsilon*L
-    obj0 <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = TRUE)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
+    obj0 <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
     step <- 2
     flag <- TRUE
-    svdL <- svd(G_L, nu = 1, nv = 1)
-    D_t <- - svdL$u%*%t(svdL$v)
+    svdL <- eigs_sym(G_L, 1)
+    D_t <- - sign(svdL$value)*svdL$vectors%*%t(svdL$vectors)
     while(flag){
       step <- 0.5*step
       if(lambda1 >= - sum(D_t*G_L)){
@@ -119,14 +120,15 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
       } else{
         R_tilde <- U
         L_tilde <- U*D_t
+        #beta <- min(1, (sum((L - L_tilde)*L_tilde)+(R - R_tilde)*lambda1)/norm(L_tilde - L, type = "F")^2)
         L <- L.tmp + step*(L_tilde - L.tmp)
         L <- (L+t(L))/2 # to avoid propagation of numerical errors
         R <- R.tmp + step*(R_tilde - R.tmp)
       }
-      obj <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = TRUE)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
+      obj <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
       flag <- obj > obj0
     }
-    obj <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = TRUE)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
+    obj <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
     objective <- c(objective, obj)
     U <- obj/lambda1
     if(iter == 1) {
