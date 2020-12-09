@@ -23,9 +23,8 @@ plot(net, vertex.label.cex = 0.4)
 
 ## ----classical_SBM------------------------------------------------------------
 vBlocks <- 1:10
-collection_sbm <- missSBM::estimate(prepare_data(A), vBlocks = vBlocks, sampling = "node")
-L_missSBM <- collection_sbm$bestModel$fittedSBM$connectProb
-colo <- round(collection_sbm$bestModel$fittedSBM$blocks)
+collection_sbm <- missSBM::estimateMissSBM(A, vBlocks, "node")
+colo <- round(collection_sbm$bestModel$fittedSBM$probMemberships)
 colo <- sapply(1:nrow(A), function(i) which.max(colo[i,]))
 pal3 <- brewer.pal(10, "Set3")
 V(net)$color <- pal3[colo]

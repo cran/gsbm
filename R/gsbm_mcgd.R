@@ -70,9 +70,10 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
   Omega <- !is.na(A)
   if(is.null(S0)) {
     S0 <- matrix(0,n,n)
+    #S0 <- as(Matrix(0,n,n, sparse=T), "dgCMatrix")
   }
-  if(is.null(L0)) L0 <- matrix(0,n,n)
-  if(is.null(R0)) R0 <- sqrt((eigs_sym(L0, 1)$values)^2)
+  if(is.null(L0)) L0 <- matrix(0,n,n)#L0 <- as(Matrix(0,n,n, sparse=T), "dgCMatrix")
+  if(is.null(R0)) R0 <- 0
   if(is.null(U)) {
     U <- (1/2)*sum((A - S0)^2, na.rm = T)/lambda1
   }
@@ -95,6 +96,7 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
     flag <- TRUE
     while(flag){
       step <- 0.5*step
+      #mat <- t(pmax(1-step*lambda2/sqrt(colSums((S-step*G_S)^2, na.rm=T)),0)*t(S-G_S))
       mat <- sapply(1:n, function(j){
         max(1-step*lambda2/sqrt(sum((S[,j]-step*G_S[,j])^2, na.rm=T)),0)*(S[,j]-step*G_S[,j])
       })
@@ -103,7 +105,7 @@ gsbm_mcgd <- function(A, lambda1, lambda2, epsilon=0.1, U = NULL, maxit = 100, t
       flag <- obj > obj0
     }
     S <- mat
-    G_L <- -Omega*(A - S - t(S) - L) + epsilon*L
+    G_L <- -1*Omega*(A - S - t(S) - L) + epsilon*L
     obj0 <- (1/2)*sum((A0-S-t(S)-L)^2, na.rm = T)+lambda1*R+lambda2*sum(sqrt(colSums(S^2)))+epsilon*(norm(L, type="F")^2+norm(S, type="F")^2)
     step <- 2
     flag <- TRUE

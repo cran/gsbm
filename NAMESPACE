@@ -2,6 +2,12 @@
 
 export(crossval)
 export(gsbm_mcgd)
+export(gsbm_mcgd_parallel)
+import(Matrix)
+import(doParallel)
+import(foreach)
+import(parallel)
 importFrom(RSpectra,eigs_sym)
 importFrom(softImpute,softImpute)
 importFrom(stats,aggregate)
+importFrom(utils,globalVariables)
