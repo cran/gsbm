@@ -1,5 +1,3 @@
-# gsbm 0.1.1
+# gsbm 0.2.2.
 
-## Minor update
-
-Computationally more efficient version of the function gsbm_mcgd.
+Rejection from CRAN while all CRAN Package Check Results where OK. Resubmitted.

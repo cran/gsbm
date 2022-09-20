@@ -14,26 +14,31 @@
 
 <title>Blogosphere</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
-});
-</script>
-
-
-<style type="text/css">code{white-space: pre;}</style>
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -119,187 +124,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -318,59 +144,59 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="the-political-blogosphere-network" class="section level2">
 <h2>The political blogosphere network</h2>
 <p>The network of political blogs was first analyzed in “The political blogosphere and the 2004 US Election” by Lada A. Adamic and Natalie Glance, in Proceedings of the WWW-2005 Workshop on the Weblogging Ecosystem (2005). This data set, collected before the 2004 American presidential election, records hyperlinks connecting political blogs to one another. These blogs have been labeled manually as either “liberal” or “conservative”. We conduct our analysis on the largest connected component of the graph, and we ignore the direction of the links.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># Load packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">library</span>(Matrix)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">library</span>(igraph)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">library</span>(gsbm)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co"># Load data</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">data</span>(blogosphere)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>A &lt;-<span class="st"> </span>blogosphere<span class="op">$</span>A</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>names &lt;-<span class="st"> </span>blogosphere<span class="op">$</span>names</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>opinion &lt;-<span class="st"> </span>blogosphere<span class="op">$</span>opinion</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsbm)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(blogosphere)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> blogosphere<span class="sc">$</span>A</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> blogosphere<span class="sc">$</span>names</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>opinion <span class="ot">&lt;-</span> blogosphere<span class="sc">$</span>opinion</span></code></pre></div>
 <p>We run our algorithm and we use our estimator <span class="math inline">\(\widehat{S}_{\epsilon}\)</span> to detect outliers : a node is considered an outlier if the corresponding column of the matrix <span class="math inline">\(\widehat{S}_{\epsilon}\)</span> is not null.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>degrees &lt;-<span class="st"> </span><span class="kw">colSums</span>(A)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="kw">nrow</span>(A)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>sqrt_deg &lt;-<span class="kw">sqrt</span>(<span class="kw">mean</span>(degrees))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># Choice of parameters</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>lambda_<span class="dv">1</span>&lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span>sqrt_deg</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>lambda_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="dv">5</span><span class="op">*</span>sqrt_deg</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="kw">print</span>(lambda_<span class="dv">1</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">#&gt; [1] 52.30216</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="kw">print</span>(lambda_<span class="dv">2</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">#&gt; [1] 26.15108</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co"># Run the mcgd algorithm</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>res &lt;-<span class="st"> </span><span class="kw">gsbm_mcgd</span>(A, lambda_<span class="dv">1</span>,lambda_<span class="dv">2</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co"># Detect the outliers</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>outliers_detected &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colSums</span>(res<span class="op">$</span>S)<span class="op">&gt;</span><span class="dv">0</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>s&lt;-<span class="st"> </span><span class="kw">length</span>(outliers_detected)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>names[outliers_detected]</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="co">#&gt;  [1] &quot;atrios.blogspot.com&quot;   &quot;dailykos.com&quot;          &quot;talkingpointsmemo.com&quot;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="co">#&gt;  [4] &quot;washingtonmonthly.com&quot; &quot;blogsforbush.com&quot;      &quot;drudgereport.com&quot;     </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co">#&gt;  [7] &quot;instapundit.com&quot;       &quot;michellemalkin.com&quot;    &quot;powerlineblog.com&quot;    </span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co">#&gt; [10] &quot;truthlaidbear.com&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>degrees <span class="ot">&lt;-</span> <span class="fu">colSums</span>(A)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(A)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sqrt_deg <span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">mean</span>(degrees))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Choice of parameters</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>lambda_1<span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span>sqrt_deg</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>lambda_2 <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span>sqrt_deg</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lambda_1)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 52.30216</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lambda_2)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 26.15108</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the mcgd algorithm</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">gsbm_mcgd</span>(A, lambda_1,lambda_2)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect the outliers</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>outliers_detected <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colSums</span>(res<span class="sc">$</span>S)<span class="sc">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>s<span class="ot">&lt;-</span> <span class="fu">length</span>(outliers_detected)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>names[outliers_detected]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;atrios.blogspot.com&quot;   &quot;dailykos.com&quot;          &quot;talkingpointsmemo.com&quot;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;washingtonmonthly.com&quot; &quot;blogsforbush.com&quot;      &quot;drudgereport.com&quot;     </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;instapundit.com&quot;       &quot;michellemalkin.com&quot;    &quot;powerlineblog.com&quot;    </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;truthlaidbear.com&quot;</span></span></code></pre></div>
 <p>Our algorithm detects <span class="math inline">\(s = 10\)</span> outliers.</p>
 <p>Then, we use our estimator <span class="math inline">\(\widehat{L}_{\epsilon}\)</span> to estimate the communities of the remaining nodes. More precisely, we estimate the community of a node by the sign of its coordinate along the second eigenvector of <span class="math inline">\(\widehat{L}_{\epsilon}\)</span>, up to a permutation of the two communities. We compare our results with the labels obtained by manual labeling.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># Estimate the communities of the remaining (inlier) nodes</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>I &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colSums</span>(res<span class="op">$</span>S)<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>com_est &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>, (n<span class="op">-</span>s)<span class="op">*</span><span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> n<span class="op">-</span>s)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>sv &lt;-<span class="st"> </span><span class="kw">svd</span>(res<span class="op">$</span>L, <span class="dt">nu =</span> <span class="dv">2</span>, <span class="dt">nv =</span> <span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>com_est[<span class="dv">1</span>,] &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw">sign</span>(sv<span class="op">$</span>u[I,<span class="dv">2</span>])<span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rep</span>(<span class="fl">0.5</span>,n <span class="op">-</span><span class="st"> </span>s))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>com_est[<span class="dv">2</span>,] &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">3</span>,n<span class="op">-</span>s) <span class="op">-</span><span class="st"> </span>com_est[<span class="dv">1</span>,] </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co"># labels are obtained up to a permutation</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>best_est &lt;-<span class="st"> </span><span class="kw">which.max</span>(<span class="kw">c</span>(<span class="kw">sum</span>(com_est[<span class="dv">1</span>,] <span class="op">==</span><span class="st"> </span>opinion[I]), <span class="kw">sum</span>(com_est[<span class="dv">2</span>,] <span class="op">==</span><span class="st"> </span>opinion[I]))) </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co"># Missclassified nodes</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>missclassified_nodes &lt;-<span class="st"> </span>(com_est[best_est,] <span class="op">!=</span><span class="st"> </span>opinion[I])</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>error &lt;-<span class="st"> </span><span class="kw">sum</span>(missclassified_nodes)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="kw">print</span>(error)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">#&gt; [1] 84</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the communities of the remaining (inlier) nodes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>I <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colSums</span>(res<span class="sc">$</span>S)<span class="sc">==</span><span class="dv">0</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>com_est <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>, (n<span class="sc">-</span>s)<span class="sc">*</span><span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> n<span class="sc">-</span>s)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sv <span class="ot">&lt;-</span> <span class="fu">svd</span>(res<span class="sc">$</span>L, <span class="at">nu =</span> <span class="dv">2</span>, <span class="at">nv =</span> <span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>com_est[<span class="dv">1</span>,] <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">sign</span>(sv<span class="sc">$</span>u[I,<span class="dv">2</span>])<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rep</span>(<span class="fl">0.5</span>,n <span class="sc">-</span> s))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>com_est[<span class="dv">2</span>,] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">3</span>,n<span class="sc">-</span>s) <span class="sc">-</span> com_est[<span class="dv">1</span>,] </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># labels are obtained up to a permutation</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>best_est <span class="ot">&lt;-</span> <span class="fu">which.max</span>(<span class="fu">c</span>(<span class="fu">sum</span>(com_est[<span class="dv">1</span>,] <span class="sc">==</span> opinion[I]), <span class="fu">sum</span>(com_est[<span class="dv">2</span>,] <span class="sc">==</span> opinion[I]))) </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Missclassified nodes</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>missclassified_nodes <span class="ot">&lt;-</span> (com_est[best_est,] <span class="sc">!=</span> opinion[I])</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> <span class="fu">sum</span>(missclassified_nodes)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(error)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 84</span></span></code></pre></div>
 <p>Among the <span class="math inline">\(n-s = 1212\)</span> remaining nodes, which are considered as inliers, <span class="math inline">\(84\)</span> are missclassified. The number of missclassified nodes is comparable with the best-known methods that have been applied for this dataset. We note that the nodes that are missclassified by our method either have low degree, or are well connected with nodes belonging to the other community.</p>
 </div>
 

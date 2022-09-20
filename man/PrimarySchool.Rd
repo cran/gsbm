@@ -13,7 +13,7 @@ A list with 2 attributes:
 }
 }
 \source{
-\url{https://doi.org/10.1371/journal.pone.0023176.s003}
+\url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}
 }
 \usage{
 data(PrimarySchool)

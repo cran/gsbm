@@ -87,7 +87,7 @@ plot(g, vertex.label = v.label, vertex.size = (2 + colSums(A, na.rm =T)/5), vert
 legend("bottomleft", legend = class.names, col = pal, pch = 1, bty = 'n', cex = 0.5, ncol = 1)
 ```
 
-The MCGD algorithm allows us to detect individuals with abnormal connectivities. When increasing $\lambda_2$, or when decreasing $\lambda_1$, we decrease the number of nodes that are identified as outliers. However, we note that the set of nodes detected as outliers is stable for parameters values around $(8.5,8)$. Moreover, those five nodes are identified as outliers significantly more often than the other nodes when the parameters vary. In the folloing, we therefore use the penalisation $(\lambda_1, \lambda_2) = (8.5,8)$.
+The MCGD algorithm allows us to detect individuals with abnormal connectivities. When increasing $\lambda_2$, or when decreasing $\lambda_1$, we decrease the number of nodes that are identified as outliers. However, we note that the set of nodes detected as outliers is stable for parameters values around $(8.5,8)$. Moreover, those five nodes are identified as outliers significantly more often than the other nodes when the parameters vary. In the following, we therefore use the penalisation $(\lambda_1, \lambda_2) = (8.5,8)$.
 
 ```{r run GSBM}
 # Investigate these outliers
@@ -111,9 +111,9 @@ for (o in 1:no){
 }
 ```
 
-We investigate the connectivity pattern of these nodes by comparing their connections with different groups to that of other children from their class. We note that children classified as outliers are overall well connected with children from other classes. In a epidemiologic context, they can be considered as super-propagators, who may spread a desease from one group to others.
+We investigate the connectivity pattern of these nodes by comparing their connections with different groups to that of other children from their class. We note that children classified as outliers are overall well connected with children from other classes. In a epidemiologic context, they can be considered as super-propagators, who may spread a disease from one group to others.
 
-Finally, we show that one can recover the class structure from our estimator $\widehat{\mathbf{L}}$. Indeed, it is approximately of rank $10$, corresponding to the structure of $10$ classes present in the network (the teachers are densely connected with pupils from their class, and scarsely connected with one another, so their community cannot be recovered from the graph). We recover the classes by using a k-means algorithm on the rows of the matrix $\mathbf{U}$, where $\mathbf{U}$ is a matrix whose columns contain the $10$ left singular vectors of $\widehat{\mathbf{L}}$.
+Finally, we show that one can recover the class structure from our estimator $\widehat{\mathbf{L}}$. Indeed, it is approximately of rank $10$, corresponding to the structure of $10$ classes present in the network (the teachers are densely connected with pupils from their class, and scarcely connected with one another, so their community cannot be recovered from the graph). We recover the classes by using a k-means algorithm on the rows of the matrix $\mathbf{U}$, where $\mathbf{U}$ is a matrix whose columns contain the $10$ left singular vectors of $\widehat{\mathbf{L}}$.
 
 ```{r recover the classes}
 # Compute svd and run k-means

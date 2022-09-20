@@ -13,5 +13,5 @@
 #'   2490 undirected connections between 236 nodes, with 7054 missing entries}
 #'   \item{class}{vector indicating the class of the node if the corresponding individual is a child, and otherwise that it belongs to the group of teachers.}
 #' }
-#' @source \url{https://doi.org/10.1371/journal.pone.0023176.s003}
+#' @source \url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0023176}
 "PrimarySchool"
